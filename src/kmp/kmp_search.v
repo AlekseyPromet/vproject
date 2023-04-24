@@ -43,17 +43,20 @@ fn perform_kmp_search(text string, pattern string) []int {
 	mut pattern_indx := 0
 	mut found_index := []int{}
 
-	for text_indx < text.len {
-		if pattern[text_indx] == pattern[pattern_indx]{
+	for ;text_indx < text.len; {
+		println('1 text_indx ${text_indx}')
+
+		if text[text_indx] == pattern[pattern_indx]{
 			pattern_indx++
-			text_indx++
+			text_indx++			
 		}
 		if pattern_indx == pattern.len {
+			
 			found_index << (text_indx - pattern_indx)
 			println('found_index ${found_index}')
 			pattern_indx = compile_pattern_array[pattern_indx-1]
-		} 
-		else if text_indx < text.len && pattern[pattern_indx] != text[text_indx]{
+			
+		} else if text_indx < text.len && pattern[pattern_indx] != text[text_indx]{
 			
 			if pattern_indx != 0 {
 				pattern_indx = compile_pattern_array[pattern_indx - 1]
@@ -61,7 +64,7 @@ fn perform_kmp_search(text string, pattern string) []int {
 				text_indx++
 			}
 
-		}
+		} 
 	}
 	return found_index
 }

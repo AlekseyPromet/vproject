@@ -1,6 +1,6 @@
 module main
 
-import math
+import math { max }
 
 struct TreeNode {
 	value int
